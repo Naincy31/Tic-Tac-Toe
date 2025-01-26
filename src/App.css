@@ -1,0 +1,71 @@
+.grid-size-container {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.grid-size-container button {
+  margin-right: 20px;
+  padding: 15px 20px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 40%);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.grid-size-container button:hover {
+  transform: scale(1.1);
+  background-color: #B4B4B4;
+}
+
+.tic-tac-toe {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.tic-tac-toe>.status-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.game-container {
+  justify-self: center;
+  margin: 20px 0;
+}
+
+.game-container .square {
+  height: 80px;
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #fff;
+}
+
+.game-container .square:hover {
+  background-color: #B4B4B4;
+}
+
+.tic-tac-toe button {
+  background-color: #F0F0F0;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tic-tac-toe button:hover {
+  transform: scale(1.1);
+}
