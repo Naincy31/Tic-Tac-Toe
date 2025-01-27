@@ -1,28 +1,20 @@
-import { useState } from "react"
-import GameGround from "./GameGround"
+import GridPreview from "./GridPreview"
 
-
-const KnowGridSize = () => {
-
-    const [gridSize, setGridSize] = useState(null)
+const KnowGridSize = ({setGridSize}) => {
+    const gridSizesArray = [3, 4, 5]
 
   return (
-    <>
-        {!gridSize ? 
-            (
-            <div className="grid-size">
-                <h3>Choose a grid size: </h3>
-                <button onClick={() => setGridSize(3)}>3x3</button>
-                <button onClick={() => setGridSize(4)}>4x4</button>
-                <button onClick={() => setGridSize(5)}>5x5</button>
-            </div>
-            )
-            : 
-            <GameGround gridSize={gridSize}/>
-        }
-    
-    </>
-    
+    <div className="grid-size-container">
+      <h3>Choose a grid: </h3>
+      <div className="grid-options">
+        {gridSizesArray.map((size, index) => (
+          <div className="grid-preview-container" key={index} onClick={() => setGridSize(size)}>
+            <button>{`${size}x${size}`}</button>
+            <GridPreview size={size}/>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
