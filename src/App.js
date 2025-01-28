@@ -1,7 +1,7 @@
 import './App.css';
 import KnowGridSize from './components/KnowGridSize';
-import GameStatus from './components/GameStatus';
 import { useState } from 'react';
+import GameBoard from './components/GameBoard';
 
 function App() {
   const [gridSize, setGridSize] = useState(null)
@@ -11,7 +11,7 @@ function App() {
       {!gridSize ? (
         <KnowGridSize setGridSize={setGridSize} />
       ) : (
-        <GameStatus gridSize={gridSize} setGridSize={setGridSize} />
+        <GameBoard gridSize={gridSize} setGridSize={setGridSize} />
       )}
     </>
   );

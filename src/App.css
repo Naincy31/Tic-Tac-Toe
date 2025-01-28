@@ -79,26 +79,11 @@ body {
   background-color: #f0f0f0;
 }
 
-.tic-tac-toe {
-  width: 600px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.tic-tac-toe>.status-container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.game-container {
+.grid-container {
   justify-self: center;
 }
 
-.game-container .square {
+.grid-container .square {
   height: 80px;
   border: 1px solid #ccc;
   display: flex;
@@ -110,60 +95,196 @@ body {
   background-color: #fff;
 }
 
-.game-container .square:hover {
+.grid-container .square:hover {
   background-color: #dcdcdc;
   transform: scale(1.05);
 }
 
-.tic-tac-toe button {
-  background-color: #fff;
-  border: 1px solid #ccc;
+.game-board {
+  text-align: center;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+h3 {
+  margin: 10px 0;
   color: #333;
+}
+
+.flash-text {
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 5px;
+  color: #007bff;
+  animation: flash 1s infinite alternate;
+}
+
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.score {
+  text-align: center;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.score.X {
+  border-top: 4px solid #ff6b6b;
+}
+
+.score.O {
+  border-top: 4px solid #1e90ff;
+}
+
+.score.draw {
+  border-top: 4px solid #ffa502;
+}
+
+.score h4 {
+  margin: 5px 0;
+  color: #666;
+}
+
+.grid-container {
+  margin: 20px auto;
+  display: grid;
+  gap: 10px;
+}
+
+.grid-container button {
+  background: #f0f0f0;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: 100px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: all 0.3s ease-in-out;
 }
 
-.tic-tac-toe button:hover {
-  transform: scale(1.1);
-  background-color: #555;
-  color: #fff;
+.grid-container button:hover {
+  background: #eaeaea;
 }
 
-.tic-tac-toe .change-grid {
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  color: white;
-  font-weight: bold;
+.grid-container button.X {
+  color: #ff6b6b;
+}
+
+.grid-container button.O {
+  color: #1e90ff;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
   font-size: 1rem;
-  padding: 12px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  transition: background 0.3s ease;
 }
 
-.tic-tac-toe .change-grid:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+.start-over {
+  background: #28a745;
+  color: #fff;
 }
 
-.tic-tac-toe .change-grid::before {
-  content: "";
-  position: absolute;
+.start-over.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.change-grid {
+  background: #007bff;
+  color: #fff;
+}
+
+.start-over.enabled:hover {
+  background: #0056b3;
+}
+
+.rematch-overlay {
+  position: fixed;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  transform: skewX(-45deg);
-  transition: left 0.3s ease;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.tic-tac-toe .change-grid:hover::before {
-  left: 100%;
+.rematch-popup {
+  position: relative;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.rematch-popup h2 {
+  margin-bottom: 20px;
+}
+
+.rematch-controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.rematch-button {
+  background: #ff4757;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.rematch-button:hover {
+  background: #e84118;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.close-icon:hover {
+  transform: scale(1.1);
 }

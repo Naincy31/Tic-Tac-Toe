@@ -2,10 +2,10 @@ import oTone from "../assets/sounds/oTone.mp3"
 import xTone from "../assets/sounds/xTone.mp3"
 import winTone from "../assets/sounds/win.mp3"
 
-const Grid = ({squares, currentPlayer, checkWinner, setGameState, gameStatus}) => {
+const Grid = ({squares, currentPlayer, checkWinner, setGameState, gameStatus, setRematchVisible}) => {
   
     const handleClick = (index) => {
-        if(squares[index] || !gameStatus.includes('to move')) return;
+        if(squares[index] || !gameStatus.includes('Turn')) return;
 
         const updatedSquares = [...squares]
         updatedSquares[index] = currentPlayer
@@ -22,19 +22,20 @@ const Grid = ({squares, currentPlayer, checkWinner, setGameState, gameStatus}) =
             setTimeout(() => {
                 winSound.pause()
                 winSound.currentTime = 0
-            }, 1500)
-
+            }, 2000)
             setGameState(prev => ({
                 ...prev,
                 squares: updatedSquares,
-                playersStatus: {...prev.playersStatus, [currentPlayer.toLowerCase()]: prev.playersStatus[currentPlayer.toLowerCase()] + 1}
+                playerScores: {...prev.playerScores, [currentPlayer.toLowerCase()]: prev.playerScores[currentPlayer.toLowerCase()] + 1}
             }))
+            setRematchVisible(true)
         } else if (updatedSquares.every(square => square)){
             setGameState(prev => ({
                 ...prev,
                 squares: updatedSquares,
-                drawStatus: prev.drawStatus + 1
+                draws: prev.draws + 1
             }))
+            setRematchVisible(true)
         } else {
             setGameState(prev => ({
                 ...prev,
