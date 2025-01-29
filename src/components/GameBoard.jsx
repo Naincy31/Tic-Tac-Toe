@@ -105,16 +105,15 @@ const GameBoard = ({gridSize, setGridSize}) => {
       {rematchVisible && (
         <div className="rematch-overlay">
             <div className="rematch-popup">
-            {/* Close Icon */}
-            <button className="close-icon" onClick={handleCloseRematch}>
-                X
-            </button>
-            <h2>Rematch?</h2>
-            <div className="rematch-controls">
-                <button className="rematch-button" onClick={handleRematch}>
-                Play Again
-                </button>
-            </div>
+              <button className="close-icon" onClick={handleCloseRematch}>
+                  X
+              </button>
+              <h2>Rematch?</h2>
+              <div className="rematch-controls">
+                  <button className="rematch-button" onClick={handleRematch}>
+                  Play Again
+                  </button>
+              </div>
             </div>
         </div>
         )}

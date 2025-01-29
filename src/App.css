@@ -79,27 +79,6 @@ body {
   background-color: #f0f0f0;
 }
 
-.grid-container {
-  justify-self: center;
-}
-
-.grid-container .square {
-  height: 80px;
-  border: 1px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  background-color: #fff;
-}
-
-.grid-container .square:hover {
-  background-color: #dcdcdc;
-  transform: scale(1.05);
-}
-
 .game-board {
   text-align: center;
   background: #ffffff;
@@ -112,7 +91,6 @@ body {
 
 h3 {
   margin: 10px 0;
-  color: #333;
 }
 
 .flash-text {
@@ -165,31 +143,28 @@ h3 {
 
 .grid-container {
   margin: 20px auto;
-  display: grid;
   gap: 10px;
 }
 
-.grid-container button {
-  background: #f0f0f0;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  height: 100px;
+.grid-container {
+  justify-self: center;
+}
+
+.grid-container .square {
+  height: 80px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: #fff;
 }
 
-.grid-container button:hover {
-  background: #eaeaea;
-}
-
-.grid-container button.X {
-  color: #ff6b6b;
-}
-
-.grid-container button.O {
-  color: #1e90ff;
+.grid-container .square:hover {
+  background-color: #dcdcdc;
+  transform: scale(1.05);
 }
 
 .controls {
@@ -205,7 +180,11 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 .start-over {
@@ -218,13 +197,17 @@ button {
   cursor: not-allowed;
 }
 
+.start-over.enabled:hover {
+  background: #007bff;
+}
+
 .change-grid {
   background: #007bff;
   color: #fff;
 }
 
-.start-over.enabled:hover {
-  background: #0056b3;
+.change-grid:hover {
+  background: #28a745;
 }
 
 .rematch-overlay {
@@ -247,18 +230,10 @@ button {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 200px;
-  margin: 0 auto;
 }
 
 .rematch-popup h2 {
   margin-bottom: 20px;
-}
-
-.rematch-controls {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 20px;
 }
 
 .rematch-button {
@@ -286,5 +261,5 @@ button {
 }
 
 .close-icon:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
