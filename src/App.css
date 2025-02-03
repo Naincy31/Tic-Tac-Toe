@@ -9,6 +9,23 @@ body {
   background-color: #f9f9f9;
 }
 
+.sound-icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.sound-icon img {
+  width: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sound-icon img:hover {
+  transform: scale(1.05);
+}
+
 .grid-size-container {
   text-align: center;
   padding: 20px;

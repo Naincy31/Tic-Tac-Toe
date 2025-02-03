@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { generateWinPatterns } from "../utils/winPatterns"
 import Grid from "./Grid"
 
-const GameBoard = ({gridSize, setGridSize}) => {
+const GameBoard = ({gridSize, setGridSize, soundVolume}) => {
     const winPatterns = useMemo(() => generateWinPatterns(gridSize), [gridSize])
 
     const [gameState, setGameState] = useState({
@@ -88,6 +88,7 @@ const GameBoard = ({gridSize, setGridSize}) => {
           setGameState={setGameState}
           gameStatus={gameStatus}
           setRematchVisible={setRematchVisible}
+          soundVolume = {soundVolume}
         />
       </div>
       <div className="controls">
@@ -123,3 +124,6 @@ const GameBoard = ({gridSize, setGridSize}) => {
 }
 
 export default GameBoard
+
+//sound mute
+//rematch cross then user won't be able to rematch again restart

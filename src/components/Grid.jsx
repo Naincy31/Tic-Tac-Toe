@@ -1,8 +1,4 @@
-import oTone from "../assets/sounds/oTone.mp3"
-import xTone from "../assets/sounds/xTone.mp3"
-import winTone from "../assets/sounds/win.mp3"
-
-const Grid = ({squares, currentPlayer, checkWinner, setGameState, gameStatus, setRematchVisible}) => {
+const Grid = ({squares, currentPlayer, checkWinner, setGameState, gameStatus, setRematchVisible, soundVolume}) => {
   
     const handleClick = (index) => {
         if(squares[index] || !gameStatus.includes('Turn')) return;
@@ -10,19 +6,24 @@ const Grid = ({squares, currentPlayer, checkWinner, setGameState, gameStatus, se
         const updatedSquares = [...squares]
         updatedSquares[index] = currentPlayer
 
-        const sound = currentPlayer === 'X' ? new Audio(xTone) : new Audio(oTone)
-        sound.play()
+        if(soundVolume){
+            const sound = new Audio(currentPlayer === 'X' ? '/assets/sounds/xTone.mp3' : '/assets/sounds/oTone.mp3')
+            sound.play()
+        }
 
         const winner = checkWinner(updatedSquares, currentPlayer)   
         
         if(winner){
-            const winSound = new Audio(winTone)
-            winSound.play()
+            if(soundVolume){
+                const winSound = new Audio('/assets/sounds/win.mp3')
+                winSound.play()
 
-            setTimeout(() => {
-                winSound.pause()
-                winSound.currentTime = 0
-            }, 2000)
+                setTimeout(() => {
+                    winSound.pause()
+                    winSound.currentTime = 0
+                }, 2000)
+            }
+
             setGameState(prev => ({
                 ...prev,
                 squares: updatedSquares,
