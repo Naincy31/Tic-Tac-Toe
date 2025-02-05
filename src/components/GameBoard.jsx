@@ -124,6 +124,3 @@ const GameBoard = ({gridSize, setGridSize, soundVolume}) => {
 }
 
 export default GameBoard
-
-//sound mute
-//rematch cross then user won't be able to rematch again restart
