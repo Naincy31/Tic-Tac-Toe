@@ -1,18 +1,18 @@
 import './App.css';
 import KnowGridSize from './components/KnowGridSize';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import GameBoard from './components/GameBoard';
-import mute from './assets/images/mute.png';
-import volume from './assets/images/volume-up.png';
 import { playClickSound } from './utils/playClickSound';
+import GameSound from './components/GameSound';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [gridSize, setGridSize] = useState(null)
-  const [soundVolume, setSoundVolume] = useState(true)
+  const gridSize = useSelector(state => state.game.gridSize)
+  const soundVolume = useSelector(state => state.game.soundVolume)
 
-  const toggleSound = () => {
-    setSoundVolume(!soundVolume)
-  }
+  useEffect(() => {
+    console.log(gridSize)
+  }, [gridSize])
 
   useEffect(() => {
     const handleClick = (event) => {
@@ -30,13 +30,11 @@ function App() {
 
   return (
     <>
-      <div className='sound-icon' onClick={toggleSound}>
-        <img src={soundVolume ? volume : mute} alt='sound-toggle' />
-      </div>
+      <GameSound />
       {!gridSize ? (
-        <KnowGridSize setGridSize={setGridSize} />
+        <KnowGridSize />
       ) : (
-        <GameBoard gridSize={gridSize} setGridSize={setGridSize} soundVolume={soundVolume} />
+        <GameBoard gridSize={gridSize} />
       )}
     </>
   );

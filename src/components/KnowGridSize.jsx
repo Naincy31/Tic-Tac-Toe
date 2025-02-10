@@ -1,6 +1,9 @@
 import GridPreview from "./GridPreview"
+import { useDispatch } from "react-redux"
+import { setGridSize } from "../redux/gameSlice"
 
-const KnowGridSize = ({setGridSize}) => {
+const KnowGridSize = () => {
+    const dispatch = useDispatch()
     const gridSizesArray = [3, 4, 5]
 
   return (
@@ -8,7 +11,7 @@ const KnowGridSize = ({setGridSize}) => {
       <h3>Choose a grid: </h3>
       <div className="grid-options">
         {gridSizesArray.map((size, index) => (
-          <div className="grid-preview-container" key={index} onClick={() => setGridSize(size)}>
+          <div className="grid-preview-container" key={index} onClick={() => dispatch(setGridSize(size))}>
             <button>{`${size}x${size}`}</button>
             <GridPreview size={size}/>
           </div>

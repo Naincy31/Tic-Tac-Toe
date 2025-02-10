@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useState } from "react"
 import { generateWinPatterns } from "../utils/winPatterns"
 import Grid from "./Grid"
+import { useSelector, useDispatch } from "react-redux"
+import { setGridSize } from "../redux/gameSlice"
 
-const GameBoard = ({gridSize, setGridSize, soundVolume}) => {
+const GameBoard = () => {
+    const gridSize = useSelector(state => state.game.gridSize)
+    const soundVolume = useSelector(state => state.game.soundVolume)
+    const dispatch = useDispatch()
     const winPatterns = useMemo(() => generateWinPatterns(gridSize), [gridSize])
 
     const [gameState, setGameState] = useState({
@@ -88,7 +93,7 @@ const GameBoard = ({gridSize, setGridSize, soundVolume}) => {
           setGameState={setGameState}
           gameStatus={gameStatus}
           setRematchVisible={setRematchVisible}
-          soundVolume = {soundVolume}
+          soundVolume={soundVolume}
         />
       </div>
       <div className="controls">
@@ -99,7 +104,7 @@ const GameBoard = ({gridSize, setGridSize, soundVolume}) => {
         >
           Start Over
         </button>
-        <button className="change-grid" onClick={() => setGridSize(null)}>
+        <button className="change-grid" onClick={() => dispatch(setGridSize(null))}>
           Change Grid Size
         </button>
       </div>
